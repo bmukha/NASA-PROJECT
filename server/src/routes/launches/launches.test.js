@@ -3,7 +3,12 @@ import request from 'supertest';
 import app from '../../app';
 import { connectToDB, disconnectFromDB } from '../../services/mongo';
 import { server } from '../../server';
-beforeAll(async () => await connectToDB());
+
+beforeAll(async () => {
+  await connectToDB();
+  await loadPlanetsData();
+});
+
 afterAll(async () => {
   await disconnectFromDB();
   server.close();
