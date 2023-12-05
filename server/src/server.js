@@ -10,9 +10,12 @@ const PORT = process.env.PORT || 8000;
 
 export const server = http.createServer(app);
 
-await connectToDB();
+const startMongo = async () => {
+  await connectToDB();
+  await loadPlanetsData();
+  await loadLaunchData();
+};
 
-await loadPlanetsData();
-await loadLaunchData();
-
-server.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
+startMongo().then(() => {
+  server.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
+});
