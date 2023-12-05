@@ -16,6 +16,4 @@ const startMongo = async () => {
   await loadLaunchData();
 };
 
-startMongo().then(() => {
-  server.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
-});
+startMongo();
